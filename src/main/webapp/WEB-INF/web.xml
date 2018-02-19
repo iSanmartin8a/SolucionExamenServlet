@@ -13,7 +13,7 @@
 
     <servlet-mapping>
         <servlet-name>CreateConsole</servlet-name>
-        <url-pattern>CreateConsole</url-pattern>
+        <url-pattern>createConsole</url-pattern>
     </servlet-mapping>
     <servlet>
     
@@ -23,7 +23,7 @@
 
 	<servlet-mapping>
         <servlet-name>ListConsole</servlet-name>
-        <url-pattern>ListConsole</url-pattern>
+        <url-pattern>listConsole</url-pattern>
     </servlet-mapping>
 
 	<servlet>
@@ -43,7 +43,7 @@
 
     <servlet-mapping>
         <servlet-name>CreateGame</servlet-name>
-        <url-pattern>CreateGame</url-pattern>
+        <url-pattern>createVideogame</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -53,7 +53,7 @@
 
 	<servlet-mapping>
         <servlet-name>ListGame</servlet-name>
-        <url-pattern>ListGame</url-pattern>
+        <url-pattern>listGame</url-pattern>
     </servlet-mapping>
 
 	<servlet>
@@ -63,7 +63,7 @@
 
 	<servlet-mapping>
 		<servlet-name>DeleteGame</servlet-name>
-		<url-pattern>DeleteGame</url-pattern>
+		<url-pattern>deleteVideogame</url-pattern>
 	</servlet-mapping>
   
 </web-app>

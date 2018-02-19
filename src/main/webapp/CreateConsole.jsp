@@ -7,7 +7,7 @@
 <title>Insert consoles here.</title>
 </head>
 <body>
-	<form action="CreateConsole" method="post">
+	<form action="createConsole" method="post">
 		<span>Name:</span>
 
 		<input type="text" name="name"> <br/>

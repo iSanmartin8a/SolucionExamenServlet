@@ -7,7 +7,7 @@
 		<title>Insert games here.</title>
 	</head>
 	<body>
-		<form action="CreateVideogame" method="post">
+		<form action="createVideogame" method="post">
 		<span>Title:</span>
 
 		<input type="text" name="title"> <br/>
