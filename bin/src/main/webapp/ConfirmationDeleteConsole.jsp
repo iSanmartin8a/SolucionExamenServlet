@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Delete games here.</title>
+<title>Insert title here</title>
 </head>
 <body>
 ¿Are you sure?
 
-		<form action="deleteVideogame" method="post">
-			<input type="text" value="${title}">
+		<form action="deleteConsole" method="post">
+			<input type="text" value="${name}">
 			<input type="submit" value="Yes">
 		</form>
 </body>

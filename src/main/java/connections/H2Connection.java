@@ -23,7 +23,7 @@ public class H2Connection implements ConnectionManager{
 		PreparedStatement prepareStatement;
 		try {
 			prepareStatement = conn.prepareStatement(sql);
-		prepareStatement.execute(sql);
+			prepareStatement.execute(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+        <servlet-name>CreateConsole</servlet-name>
+        <servlet-class>es.salesianos.servlet.CreateConsole</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateConsole</servlet-name>
+        <url-pattern>createConsole</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    
+    <servlet-name>ListConsole</servlet-name>
+        <servlet-class>es.salesianos.servlet.ListConsole</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ListConsole</servlet-name>
+        <url-pattern>listConsole</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+		<servlet-name>DeleteConsole</servlet-name>
+		<servlet-class>es.salesianos.servlet.DeleteConsole</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DeleteConsole</servlet-name>
+		<url-pattern>deleteConsole</url-pattern>
+	</servlet-mapping>
+	
+	   <servlet>
+        <servlet-name>CreateGame</servlet-name>
+        <servlet-class>es.salesianos.servlet.CreateGame</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateGame</servlet-name>
+        <url-pattern>createVideogame</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ListGame</servlet-name>
+        <servlet-class>es.salesianos.servlet.ListGame</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ListGame</servlet-name>
+        <url-pattern>listGame</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+		<servlet-name>DeleteGame</servlet-name>
+		<servlet-class>es.salesianos.servlet.DeleteGame</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DeleteGame</servlet-name>
+		<url-pattern>deleteVideogame</url-pattern>
+	</servlet-mapping>
+  
+</web-app>
