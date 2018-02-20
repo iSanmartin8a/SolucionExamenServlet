@@ -155,4 +155,32 @@ public class GamesRepository {
 		Connection conn = manager.open(jdbcUrl);
 		manager.close(conn);
 	}
+	
+	public List<Game> selectByCompany(int id) {
+		List<Game> listVideoGame= new ArrayList<Game>();
+		Connection conn = manager.open(jdbcUrl);
+		ResultSet resultSet = null;
+		PreparedStatement prepareStatement = null;
+		try {
+			prepareStatement = conn.prepareStatement("SELECT * FROM VIDEOGAME WHERE companyID = ?");
+			prepareStatement.setString(1, id + "");
+			resultSet = prepareStatement.executeQuery();
+			while(resultSet.next()){
+				Game gameDB = new Game();
+				gameDB.setTitle(resultSet.getString(1));
+				gameDB.setAge(resultSet.getString(2));
+				gameDB.setReleaseDate(resultSet.getDate(3));
+				gameDB.setCompanyID(resultSet.getInt(4));
+				listVideoGame.add(gameDB);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
+		}
+		return listVideoGame;
+	}
 }

@@ -9,7 +9,16 @@ public class Game {
 	private String title;
 	private String age;
 	private Date releaseDate;
+	private int companyID;
 	
+	public int getCompanyID() {
+		return companyID;
+	}
+
+	public void setCompanyID(int companyID) {
+		this.companyID = companyID;
+	}
+
 	public String getTitle() {
 		return title;
 	}

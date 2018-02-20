@@ -9,25 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Console;
-import services.ConsoleService;
+import models.Game;
+import services.GameService;
 
-public class ListCompanyConsoles extends HttpServlet{
-	
+public class ListCompanyGames extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	private ConsoleService service = new ConsoleService();
+	private GameService service = new GameService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int id= Integer.parseInt(req.getParameter("selectCompany"));
-		List<Console> listAllConsole = service.listAllByCompany(id);	
-		req.setAttribute("listAllConsoleByCompany", listAllConsole);
+		List<Game> listAllVideoGame = service.listAllByCompany(id);	
+		req.setAttribute("listAllVideoGameByCompany", listAllVideoGame);
 		redirect(req,resp);
 	}
 	
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListConsoleByCompany.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListVideoGameByCompany.jsp");
 		dispatcher.forward(req,resp);
 	}
-
+	
 }
