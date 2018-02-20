@@ -9,7 +9,7 @@
 <title>See consoles by their companies</title>
 </head>
 <body>
-	<form action="listCompany" method="post">
+	<form action="listCompanyConsole" method="post">
 	  <select name="selectCompany" > 
 	         <c:forEach var="list" items="${listAllCompany}">
 		  		<option value="${list.id}">${list.name}</option>

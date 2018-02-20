@@ -14,6 +14,14 @@
 		<input type="submit" value="see list">
 	</form>
 	
+	<form action="orderByTitle" method="post">
+		<input type="submit" value="order list by title" >
+	</form>
+	
+	<form action="orderByReleaseDate" method="post">
+		<input type="submit" value="order list by release date" >
+	</form>
+	
 	<table border="1">
 		<thead>
 			<tr>
