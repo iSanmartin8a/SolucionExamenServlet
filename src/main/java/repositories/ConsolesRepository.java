@@ -27,7 +27,7 @@ public class ConsolesRepository {
 			while (resultSet.next()) {
 				ConsoleInDatabase = new Console();
 				ConsoleInDatabase.setName(resultSet.getString(0));
-				ConsoleInDatabase.setCompany(resultSet.getString(1));
+				ConsoleInDatabase.setCompany(resultSet.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,7 +47,7 @@ public class ConsolesRepository {
 		try {
 			preparedStatement = conn.prepareStatement("INSERT INTO CONSOLE (name, company)" + "VALUES (?, ?)");
 			preparedStatement.setString(1, consoleForm.getName());
-			preparedStatement.setString(2, consoleForm.getCompany());
+			preparedStatement.setInt(2, consoleForm.getCompany());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class ConsolesRepository {
 			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
-				consoleInDatabase.setCompany(resultSet.getString(2));
+				consoleInDatabase.setCompany(resultSet.getInt(2));
 				listConsoles.add(consoleInDatabase);
 			}
 		} catch (SQLException e) {
@@ -99,7 +99,7 @@ public class ConsolesRepository {
 			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
-				consoleInDatabase.setCompany(resultSet.getString(2));
+				consoleInDatabase.setCompany(resultSet.getInt(2));
 				listConsoles.add(consoleInDatabase);
 			}
 		} catch (SQLException e) {
@@ -128,6 +128,30 @@ public class ConsolesRepository {
 		}
 	}
 
-
+	public List<Console> selectByCompany(int id) {
+		List<Console> listConsoles= new ArrayList<Console>();
+		Connection conn = manager.open(jdbcUrl);
+		ResultSet resultSet = null;
+		PreparedStatement prepareStatement = null;
+		try {
+			prepareStatement = conn.prepareStatement("SELECT * FROM CONSOLE WHERE companyId = ?");
+			prepareStatement.setString(1, id + "");
+			resultSet = prepareStatement.executeQuery();
+			while(resultSet.next()){
+				Console consoleInDatabase = new Console();
+				consoleInDatabase.setName(resultSet.getString(1));
+				consoleInDatabase.setCompany(resultSet.getInt(2));
+				listConsoles.add(consoleInDatabase);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
+		}
+		return listConsoles;
+	}
 
 }

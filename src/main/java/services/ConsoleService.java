@@ -26,20 +26,28 @@ public class ConsoleService {
 			repository.update(consoleForm);
 		}
 	}
+	
 	public List<Console> listAllConsoles() {
 		return repository.searchAll();
 	}
+	
 	public List<Console> listOrderByTitle() {
 		return repository.orderByTitle();
 	}
+	
 	public void deleteConsole(Console console){
 		repository.delete(console);
 	}
+	
 	public ConsolesRepository getRepository() {
 		return repository;
 	}
+	
 	public void setRepository(ConsolesRepository repository) {
 		this.repository = repository;
 	}
 
+	public List<Console> listAllByCompany(int companyID){
+		return repository.selectByCompany(companyID);
+	}
 }
