@@ -35,10 +35,10 @@ public class GamesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
 		}
-		manager.close(conn);
 		return gameDB;
 	}
 	public void insertGame(Game gameForm) {
@@ -54,9 +54,9 @@ public class GamesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
+			manager.close(conn);
 		}
-		manager.close(conn);
 	}
 	
 	public List<Game> searchAll() {
@@ -78,10 +78,10 @@ public class GamesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
 		}
-		manager.close(conn);
 		return listOfGames;
 	}
 	public List<Game> orderByTitle() {
@@ -103,10 +103,10 @@ public class GamesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
 		}
-		manager.close(conn);
 		return listOfGames;
 	}
 	public List<Game> orderByReleaseDate() {
@@ -128,12 +128,13 @@ public class GamesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
 		}
-		manager.close(conn);
 		return listOfGames;
 	}
+	
 	public void delete(Game gameForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
@@ -145,30 +146,13 @@ public class GamesRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
+	
 	public void update(Game consoleForm) {
 		Connection conn = manager.open(jdbcUrl);
 		manager.close(conn);
-	}
-	
-	private void close(PreparedStatement prepareStatement) {
-		try {
-			prepareStatement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-	
-	private void close(ResultSet resultSet) {
-		try {
-			resultSet.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
 	}
 }

@@ -33,9 +33,9 @@ public class ConsolesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
-			close(conn);
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
 
 		}
 		return ConsoleInDatabase;
@@ -53,14 +53,14 @@ public class ConsolesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
-			close(conn);
+			manager.close(preparedStatement);
+			manager.close(conn);
 		}
 	}
 
 	public void update(Console consoleForm) {
 		Connection conn = manager.open(jdbcUrl);
-		close(conn);
+		manager.close(conn);
 	}
 
 	public List<Console> searchAll() {
@@ -81,9 +81,9 @@ public class ConsolesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
-			close(conn);
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
 		}
 		return listConsoles;
 	}
@@ -106,9 +106,9 @@ public class ConsolesRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
-			close(conn);
+			manager.close(resultSet);
+			manager.close(prepareStatement);
+			manager.close(conn);
 		}
 		return listConsoles;
 	}
@@ -123,36 +123,11 @@ public class ConsolesRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(preparedStatement);
-			close(conn);
+			manager.close(preparedStatement);
+			manager.close(conn);
 		}
 	}
 
-	private void close(PreparedStatement prepareStatement) {
-		try {
-			prepareStatement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
 
-	private void close(ResultSet resultSet) {
-		try {
-			resultSet.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-	
-	private void close(Connection connection) {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
 
 }
