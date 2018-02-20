@@ -34,7 +34,7 @@ public class Game {
 		this.releaseDate = releaseDate;
 	}
 	
-	public void setReleaseDate2(String releaseDate2) {
+	public void setReleaseDateFromString(String releaseDate2) {
 		SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try {

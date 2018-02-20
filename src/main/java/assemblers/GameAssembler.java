@@ -13,7 +13,7 @@ public class GameAssembler {
 		
 		game.setTitle(request.getParameter("title"));
 		game.setAge(request.getParameter("age"));
-		game.setReleaseDate2((request.getParameter("releaseDate")));
+		game.setReleaseDateFromString((request.getParameter("releaseDate")));
 		return game;
 		
 	}

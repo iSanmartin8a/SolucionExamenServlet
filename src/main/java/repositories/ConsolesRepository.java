@@ -35,9 +35,9 @@ public class ConsolesRepository {
 		} finally {
 			close(resultSet);
 			close(prepareStatement);
+			close(conn);
 
 		}
-		manager.close(conn);
 		return ConsoleInDatabase;
 	}
 
@@ -54,13 +54,13 @@ public class ConsolesRepository {
 			throw new RuntimeException(e);
 		} finally {
 			close(preparedStatement);
+			close(conn);
 		}
-		manager.close(conn);
 	}
 
 	public void update(Console consoleForm) {
 		Connection conn = manager.open(jdbcUrl);
-		manager.close(conn);
+		close(conn);
 	}
 
 	public List<Console> searchAll() {
@@ -83,8 +83,8 @@ public class ConsolesRepository {
 		} finally {
 			close(resultSet);
 			close(prepareStatement);
+			close(conn);
 		}
-		manager.close(conn);
 		return listConsoles;
 	}
 
@@ -108,8 +108,8 @@ public class ConsolesRepository {
 		} finally {
 			close(resultSet);
 			close(prepareStatement);
+			close(conn);
 		}
-		manager.close(conn);
 		return listConsoles;
 	}
 
@@ -124,7 +124,7 @@ public class ConsolesRepository {
 			e.printStackTrace();
 		} finally {
 			close(preparedStatement);
-			manager.close(conn);
+			close(conn);
 		}
 	}
 
@@ -140,6 +140,15 @@ public class ConsolesRepository {
 	private void close(ResultSet resultSet) {
 		try {
 			resultSet.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private void close(Connection connection) {
+		try {
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
