@@ -145,6 +145,7 @@ public class GamesRepository {
 			System.out.println("DELETE FROM Game WHERE title = ?");
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		} finally {
 			manager.close(preparedStatement);
 			manager.close(conn);

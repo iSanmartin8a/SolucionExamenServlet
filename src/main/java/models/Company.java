@@ -41,6 +41,7 @@ public class Company {
 			date = textFormat.parse(creationDate2);
 		}catch(ParseException ex){
 			ex.printStackTrace();
+			throw new RuntimeException(ex);
 		}
 		this.creationDate = date;
 	}

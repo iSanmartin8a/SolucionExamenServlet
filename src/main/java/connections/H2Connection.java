@@ -27,6 +27,7 @@ public class H2Connection implements ConnectionManager{
 			prepareStatement.execute(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		return conn;
 	}
