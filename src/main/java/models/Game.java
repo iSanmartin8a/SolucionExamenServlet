@@ -43,14 +43,14 @@ public class Game {
 		this.releaseDate = releaseDate;
 	}
 	
-	public void setReleaseDateFromString(String releaseDate2) throws ParseException {
+	public void setReleaseDateFromString(String releaseDate2) {
 		SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try {
 			date = textFormat.parse(releaseDate2);
-		}catch(ParseException ex){
+		}catch(ParseException ex) {
 			ex.printStackTrace();
-			throw ex;
+			throw new RuntimeException(ex);
 		}
 		this.releaseDate = date;
 	}
