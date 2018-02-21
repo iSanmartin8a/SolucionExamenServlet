@@ -16,7 +16,7 @@ public class ConsolesRepository {
 	ConnectionManager manager = new H2Connection();
 
 	public Console search(Console consoleForm) {
-		Console ConsoleInDatabase = null;
+		Console consoleDB = null;
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
@@ -25,9 +25,9 @@ public class ConsolesRepository {
 			prepareStatement.setString(1, consoleForm.getName());
 			resultSet = prepareStatement.executeQuery();
 			while (resultSet.next()) {
-				ConsoleInDatabase = new Console();
-				ConsoleInDatabase.setName(resultSet.getString(0));
-				ConsoleInDatabase.setCompanyId(resultSet.getInt(1));
+				consoleDB = new Console();
+				consoleDB.setName(resultSet.getString(0));
+				consoleDB.setCompanyId(resultSet.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class ConsolesRepository {
 			manager.close(conn);
 
 		}
-		return ConsoleInDatabase;
+		return consoleDB;
 	}
 
 	public void insertConsole(Console consoleForm) {

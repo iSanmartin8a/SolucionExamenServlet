@@ -47,7 +47,7 @@ public class ConsoleService {
 		this.repository = repository;
 	}
 
-	public List<Console> listAllByCompany(int companyID){
-		return repository.selectByCompany(companyID);
+	public List<Console> listAllByCompany(int companyId){
+		return repository.selectByCompany(companyId);
 	}
 }

@@ -16,14 +16,14 @@ public class GamesRepository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new H2Connection();
 	
-	public Game search(Game GameForm) {
+	public Game search(Game gameForm) {
 		Game gameDB= null;
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Game WHERE title = ?");
-			prepareStatement.setString(1, GameForm.getTitle());
+			prepareStatement.setString(1, gameForm.getTitle());
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
 				gameDB = new Game();

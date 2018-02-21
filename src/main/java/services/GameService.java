@@ -53,7 +53,7 @@ public class GameService {
 		this.repository = repository;
 	}
 	
-	public List<Game> listAllByCompany(int companyID){
-		return repository.selectByCompany(companyID);
+	public List<Game> listAllByCompany(int companyId){
+		return repository.selectByCompany(companyId);
 	}
 }
