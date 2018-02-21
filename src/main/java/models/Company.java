@@ -6,16 +6,16 @@ import java.util.Date;
 
 public class Company {
 
-	private int ID;
+	private int iD;
 	private String name;
 	private Date creationDate;
 	
-	public int getID() {
-		return ID;
+	public int getId() {
+		return iD;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int iD) {
+		this.iD = iD;
 	}
 	
 	public String getName() {

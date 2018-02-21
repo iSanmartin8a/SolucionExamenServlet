@@ -15,19 +15,19 @@ public class ConsolesRepository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test;INIT=RUNSCRIPT FROM 'classpath:scripts/create.sql'";
 	ConnectionManager manager = new H2Connection();
 
-	public Console search(Console ConsoleForm) {
+	public Console search(Console consoleForm) {
 		Console ConsoleInDatabase = null;
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM CONSOLE WHERE name = ?");
-			prepareStatement.setString(1, ConsoleForm.getName());
+			prepareStatement.setString(1, consoleForm.getName());
 			resultSet = prepareStatement.executeQuery();
 			while (resultSet.next()) {
 				ConsoleInDatabase = new Console();
 				ConsoleInDatabase.setName(resultSet.getString(0));
-				ConsoleInDatabase.setCompany(resultSet.getInt(1));
+				ConsoleInDatabase.setCompanyId(resultSet.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,7 +47,7 @@ public class ConsolesRepository {
 		try {
 			preparedStatement = conn.prepareStatement("INSERT INTO CONSOLE (name, company)" + "VALUES (?, ?)");
 			preparedStatement.setString(1, consoleForm.getName());
-			preparedStatement.setInt(2, consoleForm.getCompany());
+			preparedStatement.setInt(2, consoleForm.getCompanyId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class ConsolesRepository {
 			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
-				consoleInDatabase.setCompany(resultSet.getInt(2));
+				consoleInDatabase.setCompanyId(resultSet.getInt(2));
 				listConsoles.add(consoleInDatabase);
 			}
 		} catch (SQLException e) {
@@ -99,7 +99,7 @@ public class ConsolesRepository {
 			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
-				consoleInDatabase.setCompany(resultSet.getInt(2));
+				consoleInDatabase.setCompanyId(resultSet.getInt(2));
 				listConsoles.add(consoleInDatabase);
 			}
 		} catch (SQLException e) {
@@ -140,7 +140,7 @@ public class ConsolesRepository {
 			while(resultSet.next()){
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
-				consoleInDatabase.setCompany(resultSet.getInt(2));
+				consoleInDatabase.setCompanyId(resultSet.getInt(2));
 				listConsoles.add(consoleInDatabase);
 			}
 		} catch (SQLException e) {
@@ -153,5 +153,4 @@ public class ConsolesRepository {
 		}
 		return listConsoles;
 	}
-
 }

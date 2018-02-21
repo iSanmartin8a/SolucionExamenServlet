@@ -11,7 +11,7 @@ public class ConsoleAssembler {
 		Console console = new Console();
 		
 		console.setName(request.getParameter("name"));
-		console.setCompany(Integer.parseInt(request.getParameter("company")));
+		console.setCompanyId(Integer.parseInt(request.getParameter("company")));
 		return console;
 		
 	}

@@ -42,7 +42,7 @@ public class CompanyRepository {
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
 				Company companyInDatabase = new Company();
-				companyInDatabase.setID(resultSet.getInt(1));
+				companyInDatabase.setId(resultSet.getInt(1));
 				companyInDatabase.setName(resultSet.getString(2));
 				companyInDatabase.setCreationDate((resultSet.getDate(3)));		
 				listCompanies.add(companyInDatabase);

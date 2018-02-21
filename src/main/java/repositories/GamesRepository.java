@@ -170,7 +170,7 @@ public class GamesRepository {
 				gameDB.setTitle(resultSet.getString(1));
 				gameDB.setAge(resultSet.getString(2));
 				gameDB.setReleaseDate(resultSet.getDate(3));
-				gameDB.setCompanyID(resultSet.getInt(4));
+				gameDB.setCompanyId(resultSet.getInt(4));
 				listVideoGame.add(gameDB);
 			}
 		} catch (SQLException e) {

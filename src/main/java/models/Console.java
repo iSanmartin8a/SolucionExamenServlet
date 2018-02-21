@@ -3,7 +3,7 @@ package models;
 public class Console {
 
 	private String name;
-	private int companyID;
+	private int companyId;
 	
 	public String getName() {
 		return name;
@@ -13,12 +13,12 @@ public class Console {
 		this.name = name;
 	}
 	
-	public int getCompany() {
-		return companyID;
+	public int getCompanyId() {
+		return companyId;
 	}
 	
-	public void setCompany(int companyID) {
-		this.companyID = companyID;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
 	
 }
