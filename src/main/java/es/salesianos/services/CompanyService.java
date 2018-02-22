@@ -3,12 +3,17 @@ package es.salesianos.services;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+
 import es.salesianos.assemblers.CompanyAssembler;
 import es.salesianos.connections.ConnectionManager;
 import es.salesianos.connections.H2Connection;
 import es.salesianos.models.Company;
 import es.salesianos.repositories.CompanyRepository;
 
+@Service
+@Profile("memory")
 public class CompanyService {
 	CompanyAssembler assembler = new CompanyAssembler();
 	ConnectionManager manager = new H2Connection();

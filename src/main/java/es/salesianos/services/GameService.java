@@ -3,12 +3,17 @@ package es.salesianos.services;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+
 import es.salesianos.assemblers.GameAssembler;
 import es.salesianos.connections.ConnectionManager;
 import es.salesianos.connections.H2Connection;
 import es.salesianos.models.Game;
 import es.salesianos.repositories.GamesRepository;
 
+@Service
+@Profile("memory")
 public class GameService {
 	GameAssembler assembler = new GameAssembler();
 	private GamesRepository repository = new GamesRepository();
