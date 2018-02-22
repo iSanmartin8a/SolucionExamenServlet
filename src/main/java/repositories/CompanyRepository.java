@@ -33,7 +33,7 @@ public class CompanyRepository {
 	}
 
 	public List<Company> searchAll() {
-		List<Company> listCompanies = new ArrayList<Company>();
+		List<Company> listCompany = new ArrayList<Company>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
@@ -45,7 +45,7 @@ public class CompanyRepository {
 				companyInDatabase.setId(resultSet.getInt(1));
 				companyInDatabase.setName(resultSet.getString(2));
 				companyInDatabase.setCreationDate((resultSet.getDate(3)));
-				listCompanies.add(companyInDatabase);
+				listCompany.add(companyInDatabase);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,6 +55,6 @@ public class CompanyRepository {
 			manager.close(prepareStatement);
 			manager.close(conn);
 		}
-		return listCompanies;
+		return listCompany;
 	}
 }
