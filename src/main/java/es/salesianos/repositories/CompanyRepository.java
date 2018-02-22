@@ -30,15 +30,16 @@ public class CompanyRepository {
 	private NamedParameterJdbcTemplate namedJdbcTemplate;
 
 	public void insertCompany(Company companyForm) {
-		String sql = "INSERT INTO COOKINGTYPE (name)" + "VALUES ( :name)";
+		String sql = "INSERT INTO Company (name, creationDate)" + "VALUES ( :name, :creationDate)";
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("name", companyForm.getName());
+		params.addValue("creationDate", companyForm.getCreationDate());
 		namedJdbcTemplate.update(sql, params);
 	}
 
 	public List<Company> searchAll() {
-		String sql = "SELECT * FROM COOKINGTYPE";
-		List<Company> cookingTypes = template.query(sql, new BeanPropertyRowMapper(Company.class));
-		return cookingTypes;
+		String sql = "SELECT * FROM Company";
+		List<Company> companies = template.query(sql, new BeanPropertyRowMapper(Company.class));
+		return companies;
 	}
 }

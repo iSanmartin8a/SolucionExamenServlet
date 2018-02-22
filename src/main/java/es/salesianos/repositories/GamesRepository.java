@@ -10,18 +10,17 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import es.salesianos.connections.ConnectionManager;
-import es.salesianos.connections.H2Connection;
+import es.salesianos.models.Console;
 import es.salesianos.models.Game;
 
 @Repository
 public class GamesRepository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
-	ConnectionManager manager = new H2Connection();
-
 	private static Logger log = LogManager.getLogger(GamesRepository.class);
 
 	@Autowired
@@ -31,178 +30,65 @@ public class GamesRepository {
 	private NamedParameterJdbcTemplate namedJdbcTemplate;
 	
 	public Game search(Game gameForm) {
-		Game gameDB = null;
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
-		Connection conn = manager.open(jdbcUrl);
-		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Game WHERE title = ?");
-			prepareStatement.setString(1, gameForm.getTitle());
-			resultSet = prepareStatement.executeQuery();
-			while (resultSet.next()) {
-				gameDB = new Game();
-				gameDB.setTitle(resultSet.getString(1));
-				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			manager.close(resultSet);
-			manager.close(prepareStatement);
-			manager.close(conn);
-		}
-		return gameDB;
+		String sql = "SELECT * FROM Game WHERE title = :title";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("title", gameForm.getTitle());
+		Game games = (Game) template.query(sql, new BeanPropertyRowMapper(Game.class));
+		return games;
 	}
 
 	public void insertGame(Game gameForm) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
-		try {
-			preparedStatement = conn
-					.prepareStatement("INSERT INTO Game (title, age, releaseDate)" + "VALUES (?, ?, ?)");
-			preparedStatement.setString(1, gameForm.getTitle());
-			preparedStatement.setString(2, gameForm.getAge());
-			preparedStatement.setDate(3, (Date) gameForm.getReleaseDate());
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			manager.close(preparedStatement);
-			manager.close(conn);
-		}
+		String sql = "INSERT INTO Game (title, age, releaseDate, companyId)" + "VALUES ( :title, :age, :releaseDate, :companyId)";
+		MapSqlParameterSource paramsToInsert = new MapSqlParameterSource();
+		paramsToInsert.addValue("title", gameForm.getTitle());
+		paramsToInsert.addValue("age", gameForm.getAge());
+		paramsToInsert.addValue("releaseDate", gameForm.getReleaseDate());
+		paramsToInsert.addValue("companyId", gameForm.getCompanyId());
+		namedJdbcTemplate.update(sql, paramsToInsert);
 	}
 
 	public List<Game> searchAll() {
-		List<Game> listOfGames = new ArrayList<Game>();
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
-		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM VIDEOGAME");
-			resultSet = prepareStatement.executeQuery();
-			while (resultSet.next()) {
-				Game gameDB = new Game();
-				gameDB.setTitle(resultSet.getString(1));
-				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));
-				;
-				listOfGames.add(gameDB);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			manager.close(resultSet);
-			manager.close(prepareStatement);
-			manager.close(conn);
-		}
-		return listOfGames;
+		String sql = "SELECT * FROM Game";
+		List<Game> games = template.query(sql, new BeanPropertyRowMapper(Game.class));
+		return games;
 	}
 
 	public List<Game> orderByTitle() {
-		List<Game> listOfGames = new ArrayList<Game>();
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
-		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Game ORDER BY name ASC");
-			resultSet = prepareStatement.executeQuery();
-			while (resultSet.next()) {
-				Game gameDB = new Game();
-				gameDB.setTitle(resultSet.getString(1));
-				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));
-				;
-				listOfGames.add(gameDB);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			manager.close(resultSet);
-			manager.close(prepareStatement);
-			manager.close(conn);
-		}
-		return listOfGames;
+		String sql = "SELECT * FROM Game ORDER BY title";
+		List<Game> games = template.query(sql, new BeanPropertyRowMapper(Game.class));
+		return games;
 	}
 
 	public List<Game> orderByReleaseDate() {
-		List<Game> listOfGames = new ArrayList<Game>();
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
-		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Game ORDER BY releaseDate ASC");
-			resultSet = prepareStatement.executeQuery();
-			while (resultSet.next()) {
-				Game gameDB = new Game();
-				gameDB.setTitle(resultSet.getString(1));
-				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));
-				;
-				listOfGames.add(gameDB);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			manager.close(resultSet);
-			manager.close(prepareStatement);
-			manager.close(conn);
-		}
-		return listOfGames;
+		String sql = "SELECT * FROM Game ORDER BY releaseDate";
+		List<Game> games = template.query(sql, new BeanPropertyRowMapper(Game.class));
+		return games;
 	}
 
 	public void delete(Game gameForm) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
-		try {
-			preparedStatement = conn.prepareStatement("DELETE FROM Game WHERE title = ?");
-			preparedStatement.setString(1, gameForm.getTitle());
-			preparedStatement.executeUpdate();
-			System.out.println("DELETE FROM Game WHERE title = ?");
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			manager.close(preparedStatement);
-			manager.close(conn);
-		}
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("title", gameForm.getTitle());
+		namedJdbcTemplate.update("DELETE FROM Game WHERE title = :title", params);
 	}
 
-	public void update(Game consoleForm) {
-		Connection conn = manager.open(jdbcUrl);
-		manager.close(conn);
+	public void update(Game gameForm) {
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("title", gameForm.getTitle());
+		namedJdbcTemplate.update("DELETE FROM Game WHERE title = :title", params);
+		String sql = "INSERT INTO Game (title, age, releaseDate, companyId)" + "VALUES ( :title, :age, :releaseDate, :companyId)";
+		MapSqlParameterSource paramsToInsert = new MapSqlParameterSource();
+		paramsToInsert.addValue("title", gameForm.getTitle());
+		paramsToInsert.addValue("age", gameForm.getAge());
+		paramsToInsert.addValue("releaseDate", gameForm.getReleaseDate());
+		paramsToInsert.addValue("companyId", gameForm.getCompanyId());
+		namedJdbcTemplate.update(sql, paramsToInsert);
 	}
 
 	public List<Game> selectByCompany(int id) {
-		List<Game> listVideoGame = new ArrayList<Game>();
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
-		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM VIDEOGAME WHERE companyID = ?");
-			prepareStatement.setString(1, id + "");
-			resultSet = prepareStatement.executeQuery();
-			while (resultSet.next()) {
-				Game gameDB = new Game();
-				gameDB.setTitle(resultSet.getString(1));
-				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));
-				gameDB.setCompanyId(resultSet.getInt(4));
-				listVideoGame.add(gameDB);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			manager.close(resultSet);
-			manager.close(prepareStatement);
-			manager.close(conn);
-		}
-		return listVideoGame;
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("company", id);
+		List<Game> games = template.query("SELECT * FROM Game WHERE company = :company",
+				new BeanPropertyRowMapper<Game>(Game.class));
+		return games;
 	}
 }
