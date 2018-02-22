@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import es.salesianos.assemblers.GameAssembler;
-import es.salesianos.connections.ConnectionManager;
-import es.salesianos.connections.H2Connection;
 import es.salesianos.models.Game;
 import es.salesianos.repositories.GamesRepository;
 
@@ -16,9 +14,7 @@ import es.salesianos.repositories.GamesRepository;
 public class GameService {
 	@Autowired
 	private GamesRepository repository;
-	
 	GameAssembler assembler = new GameAssembler();
-	ConnectionManager manager = new H2Connection();
 
 	public Game assembleUserFromRequest(HttpServletRequest req) {
 		return GameAssembler.assembleGameForm(req);
