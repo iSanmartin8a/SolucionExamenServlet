@@ -7,15 +7,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 import es.salesianos.connections.ConnectionManager;
 import es.salesianos.connections.H2Connection;
 import es.salesianos.models.Game;
 
+@Repository
 public class GamesRepository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new H2Connection();
 
+	private static Logger log = LogManager.getLogger(GamesRepository.class);
+
+	@Autowired
+	private JdbcTemplate template;
+
+	@Autowired
+	private NamedParameterJdbcTemplate namedJdbcTemplate;
+	
 	public Game search(Game gameForm) {
 		Game gameDB = null;
 		ResultSet resultSet = null;
