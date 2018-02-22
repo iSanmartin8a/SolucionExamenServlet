@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import es.salesianos.assemblers.CompanyAssembler;
 import es.salesianos.models.Company;
 import es.salesianos.repositories.CompanyRepository;
 import es.salesianos.repositories.GamesRepository;
@@ -15,11 +14,6 @@ import es.salesianos.repositories.GamesRepository;
 public class CompanyService {
 	@Autowired
 	private CompanyRepository repository;
-	CompanyAssembler assembler = new CompanyAssembler();
-
-	public Company assembleUserFromRequest(HttpServletRequest req) {
-		return CompanyAssembler.assembleCompanyFrom(req);
-	}
 
 	public void createNewCompanyFromRequest(Company companyForm) {
 		repository.insertCompany(companyForm);

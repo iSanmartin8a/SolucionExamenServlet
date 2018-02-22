@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import es.salesianos.assemblers.ConsoleAssembler;
 import es.salesianos.models.Console;
 import es.salesianos.repositories.ConsolesRepository;
 import es.salesianos.repositories.GamesRepository;
@@ -15,11 +14,6 @@ import es.salesianos.repositories.GamesRepository;
 public class ConsoleService {
 	@Autowired
 	private ConsolesRepository repository;
-	ConsoleAssembler assembler = new ConsoleAssembler();
-
-	public Console assembleUserFromRequest(HttpServletRequest req) {
-		return ConsoleAssembler.assembleConsoleFrom(req);
-	}
 
 	public void createNewConsoleFromRequest(Console consoleForm) {
 		Console consoleInDatabase = repository.search(consoleForm);
