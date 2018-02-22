@@ -18,37 +18,30 @@ public class CompanyController {
 	@Autowired
 	private CompanyService service;
 	
-	@GetMapping("/RegisterCompany")
+	@GetMapping("/CreateCompany")
 	public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView("RegisterCompany", "command", new Company());
+		ModelAndView modelAndView = new ModelAndView("CreateCompany", "command", new Company());
 		return modelAndView;
 	}
 	
-	@PostMapping("registercompany")
+	@PostMapping("createCompany")
 	public ModelAndView companyInsert(@ModelAttribute Company company) {
 		service.insert(company);
-		ModelAndView modelAndView = new ModelAndView("RegisterCompany", "command", new Company());
+		ModelAndView modelAndView = new ModelAndView("CreateCompany", "command", new Company());
 		return modelAndView;
 	}
 	
-	@GetMapping("ListCompanies")
-	public ModelAndView listCompanies() {
-		ModelAndView modelAndView = new ModelAndView("ListCompanies", "command", new Company());
-		modelAndView.addObject("listAllCompanies", service.listAllCompany());
-		return modelAndView;
-	}
-	
-	@GetMapping("/RegisterConsole")
+	@GetMapping("/CreateConsole")
 	public ModelAndView registerConsole() {
-		ModelAndView modelAndView = new ModelAndView("RegisterConsole", "command", new Console());
+		ModelAndView modelAndView = new ModelAndView("createConsole", "command", new Console());
 		modelAndView.addObject("listAllCompanies", service.listAllCompany());
 		return modelAndView;
 	}
 	
-	@GetMapping("/ListConsolesCompanies")
+	@GetMapping("/ListConsoleByCompany")
 	public ModelAndView listConsolesCompanies() {
-		ModelAndView modelAndView = new ModelAndView("ListConsolesCompanies", "command", new Console());
-		modelAndView.addObject("listAllCompanies", service.listAllCompany());
+		ModelAndView modelAndView = new ModelAndView("listCompanyConsole", "command", new Console());
+		modelAndView.addObject("listAllCompany", service.listAllCompany());
 		return modelAndView;
 	}
 }

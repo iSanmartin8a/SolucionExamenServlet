@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import es.salesianos.models.Console;
 import es.salesianos.models.Game;
 import es.salesianos.services.ConsoleService;
@@ -15,38 +14,24 @@ public class ConsoleController {
 	@Autowired
 	private ConsoleService service;
 
-	@PostMapping("registerconsole")
+	@PostMapping("CreateConsole")
 	public ModelAndView consoleInsert(@ModelAttribute Console console) {
 		service.createNewConsoleFromRequest(console);
-		ModelAndView modelAndView = new ModelAndView("RegisterConsole", "command", new Console());
+		ModelAndView modelAndView = new ModelAndView("CreateConsole", "command", new Console());
 		return modelAndView;
 	}
 
-	@GetMapping("/ListConsoles")
+	@GetMapping("/ListConsole")
 	public ModelAndView listConsoles() {
-		ModelAndView modelAndView = new ModelAndView("ListConsoles", "command", new Console());
+		ModelAndView modelAndView = new ModelAndView("listConsole", "command", new Console());
 		modelAndView.addObject("listAllConsoles", service.listAllConsoles());
 		return modelAndView;
 	}
 
-	@GetMapping("/RegisterVideogame")
-	public ModelAndView registerVideogame() {
-		ModelAndView modelAndView = new ModelAndView("RegisterVideogame", "command", new Game());
-		modelAndView.addObject("listAllConsoles", service.listAllConsoles());
-		return modelAndView;
-	}
-
-	@GetMapping("/ListVideogamesConsoles")
-	public ModelAndView listVideogamesConsoles() {
-		ModelAndView modelAndView = new ModelAndView("ListVideogamesConsoles", "command", new Game());
-		modelAndView.addObject("listAllConsoles", service.listAllConsoles());
-		return modelAndView;
-	}
-
-	@PostMapping("/listConsolesByCompany")
+	@PostMapping("/ListConsoleByCompany")
 	public ModelAndView listConsolesByCompanies(@ModelAttribute("companyName") int companyId) {
-		ModelAndView modelAndView = new ModelAndView("ListConsolesCompanies", "command", new Console());
-		modelAndView.addObject("listAllConsoles", service.listAllByCompany(companyId));
+		ModelAndView modelAndView = new ModelAndView("listCompanyConsole", "command", new Console());
+		modelAndView.addObject("listAllConsole", service.listAllByCompany(companyId));
 		return modelAndView;
 	}
 
