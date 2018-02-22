@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import connections.ConnectionManager;
 import connections.H2Connection;
 import models.Company;
@@ -32,6 +31,7 @@ public class CompanyRepository {
 			manager.close(conn);
 		}
 	}
+	
 	public List<Company> searchAll() {
 		List<Company> listCompanies= new ArrayList<Company>();
 		Connection conn = manager.open(jdbcUrl);

@@ -1,9 +1,7 @@
 package services;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import assemblers.ConsoleAssembler;
 import connections.ConnectionManager;
 import connections.H2Connection;
@@ -18,6 +16,7 @@ public class ConsoleService {
 	public Console assembleUserFromRequest(HttpServletRequest req) {
 		return ConsoleAssembler.assembleConsoleFrom(req);
 	}
+	
 	public void createNewConsoleFromRequest(Console consoleForm) {
 		Console consoleInDatabase = repository.search(consoleForm);
 		if (consoleInDatabase== null) {

@@ -9,15 +9,11 @@
 	<body>
 		<form action="createGame" method="post">
 		<span>Title:</span>
-
 		<input type="text" name="title"> <br/>
 		<span>Recommended Age:</span>
-
 		<input type="text" name="recommendedAge"><br/>
 		<span>Release Date:</span>
-
 		<input type="date" name="releaseDate"><br/>
-
 		<input type="submit">
 	</form>
 	</body>

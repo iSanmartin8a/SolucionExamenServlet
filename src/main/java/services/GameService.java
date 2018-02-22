@@ -1,9 +1,7 @@
 package services;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import assemblers.GameAssembler;
 import connections.ConnectionManager;
 import connections.H2Connection;
@@ -12,7 +10,6 @@ import repositories.GamesRepository;
 
 public class GameService {
 	GameAssembler assembler = new GameAssembler();
-
 	private GamesRepository repository = new GamesRepository();
 	ConnectionManager manager = new H2Connection();
 	

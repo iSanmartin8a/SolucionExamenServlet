@@ -41,6 +41,7 @@ public class GamesRepository {
 		}
 		return gameDB;
 	}
+	
 	public void insertGame(Game gameForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
@@ -84,6 +85,7 @@ public class GamesRepository {
 		}
 		return listOfGames;
 	}
+	
 	public List<Game> orderByTitle() {
 		List<Game> listOfGames= new ArrayList<Game>();
 		Connection conn = manager.open(jdbcUrl);
@@ -109,6 +111,7 @@ public class GamesRepository {
 		}
 		return listOfGames;
 	}
+	
 	public List<Game> orderByReleaseDate() {
 		List<Game> listOfGames= new ArrayList<Game>();
 		Connection conn = manager.open(jdbcUrl);

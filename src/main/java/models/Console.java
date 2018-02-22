@@ -1,7 +1,6 @@
 package models;
 
 public class Console {
-
 	private String name;
 	private int companyId;
 	
@@ -20,5 +19,4 @@ public class Console {
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
-	
 }

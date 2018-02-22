@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Game {
-	
 	private String title;
 	private String age;
 	private Date releaseDate;
@@ -54,5 +53,4 @@ public class Game {
 		}
 		this.releaseDate = date;
 	}
-
 }

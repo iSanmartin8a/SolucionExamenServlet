@@ -37,7 +37,6 @@
 					<td><c:out value="${videogame.age}"/> </td>
 					<td><c:out value="${videogame.releaseDate}"/> </td>
 					<td><a href="/deleteVG?title=${videogame.title}">Delete</a></td>
-					
 		    	</tr>
 			</c:forEach>
 		</tbody>

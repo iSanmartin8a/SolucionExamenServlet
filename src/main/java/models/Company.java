@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Company {
-
 	private int iD;
 	private String name;
 	private Date creationDate;
@@ -45,5 +44,4 @@ public class Company {
 		}
 		this.creationDate = date;
 	}
-	
 }

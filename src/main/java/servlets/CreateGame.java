@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +11,7 @@ import models.Game;
 import services.ConsoleService;
 import services.GameService;
 
-/**
- * Servlet implementation class GameServlet
- */
 public class CreateGame extends HttpServlet{
-
 	private GameService service = new GameService();
 
 	@Override
@@ -38,5 +33,4 @@ public class CreateGame extends HttpServlet{
 	public void setVideogameService(GameService service) {
 		this.service = service;
 	}
-
 }
