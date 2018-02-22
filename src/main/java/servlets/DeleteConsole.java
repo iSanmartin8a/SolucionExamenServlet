@@ -26,7 +26,6 @@ public class DeleteConsole extends HttpServlet {
 		confirmationRedirect(req, resp);
 	}
 
-
 	protected void confirmationRedirect(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("ConfirmationDeleteConsole.jsp");

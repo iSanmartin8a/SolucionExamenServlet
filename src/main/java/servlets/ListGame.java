@@ -11,17 +11,17 @@ import models.Game;
 import services.GameService;
 
 public class ListGame extends HttpServlet {
-	private GameService service= new  GameService();
+	private GameService service = new GameService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Game> listAllVideogames = service.listAllVideogames();
 		req.setAttribute("listAllVideogames", listAllVideogames);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListVideogame.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

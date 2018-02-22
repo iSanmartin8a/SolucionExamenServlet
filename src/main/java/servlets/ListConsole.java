@@ -11,17 +11,17 @@ import models.Console;
 import services.ConsoleService;
 
 public class ListConsole extends HttpServlet {
-	private ConsoleService service= new  ConsoleService();
+	private ConsoleService service = new ConsoleService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Console> listAllConsoles = service.listAllConsoles();
 		req.setAttribute("listAllConsoles", listAllConsoles);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListConsole.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

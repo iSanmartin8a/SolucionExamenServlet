@@ -21,7 +21,7 @@ public class CompanyRepository {
 		try {
 			preparedStatement = conn.prepareStatement("INSERT INTO COMPANY (name, creationDate)" + "VALUES (?, ?)");
 			preparedStatement.setString(1, companyForm.getName());
-			preparedStatement.setDate(2,(Date) companyForm.getCreationDate());
+			preparedStatement.setDate(2, (Date) companyForm.getCreationDate());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -31,26 +31,26 @@ public class CompanyRepository {
 			manager.close(conn);
 		}
 	}
-	
+
 	public List<Company> searchAll() {
-		List<Company> listCompanies= new ArrayList<Company>();
+		List<Company> listCompanies = new ArrayList<Company>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Company");
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				Company companyInDatabase = new Company();
 				companyInDatabase.setId(resultSet.getInt(1));
 				companyInDatabase.setName(resultSet.getString(2));
-				companyInDatabase.setCreationDate((resultSet.getDate(3)));		
+				companyInDatabase.setCreationDate((resultSet.getDate(3)));
 				listCompanies.add(companyInDatabase);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			manager.close(resultSet);
 			manager.close(prepareStatement);
 			manager.close(conn);

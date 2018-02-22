@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Company;
 import services.CompanyService;
 
-public class CreateCompany extends HttpServlet{
+public class CreateCompany extends HttpServlet {
 	private CompanyService service = new CompanyService();
 	private static final long serialVersionUID = 1L;
 
@@ -17,14 +17,14 @@ public class CreateCompany extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Company company = service.assembleUserFromRequest(req);
 		service.createNewCompanyFromRequest(company);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
-	
+
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateCompany.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
+
 	public CompanyService getService() {
 		return service;
 	}

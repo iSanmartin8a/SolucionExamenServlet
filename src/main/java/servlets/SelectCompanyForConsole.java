@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Company;
 import services.CompanyService;
 
-public class SelectCompanyForConsole extends HttpServlet{
+public class SelectCompanyForConsole extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CompanyService service = new CompanyService();
 
@@ -18,11 +18,11 @@ public class SelectCompanyForConsole extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Company> listAllCompany = service.listAllCompany();
 		req.setAttribute("listAllCompany", listAllCompany);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
-	
+
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListConsoleByCompany.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

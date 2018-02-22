@@ -16,14 +16,14 @@ public class ListCompanyGames extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int id= Integer.parseInt(req.getParameter("selectCompany"));
-		List<Game> listAllVideoGame = service.listAllByCompany(id);	
+		int id = Integer.parseInt(req.getParameter("selectCompany"));
+		List<Game> listAllVideoGame = service.listAllByCompany(id);
 		req.setAttribute("listAllVideoGameByCompany", listAllVideoGame);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
-	
+
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListVideoGameByCompany.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

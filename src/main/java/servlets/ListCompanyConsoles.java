@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import models.Console;
 import services.ConsoleService;
 
-public class ListCompanyConsoles extends HttpServlet{
+public class ListCompanyConsoles extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ConsoleService service = new ConsoleService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int id= Integer.parseInt(req.getParameter("selectCompany"));
-		List<Console> listAllConsole = service.listAllByCompany(id);	
+		int id = Integer.parseInt(req.getParameter("selectCompany"));
+		List<Console> listAllConsole = service.listAllByCompany(id);
 		req.setAttribute("listAllConsoleByCompany", listAllConsole);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
-	
+
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListConsoleByCompany.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

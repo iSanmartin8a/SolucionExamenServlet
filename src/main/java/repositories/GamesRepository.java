@@ -15,9 +15,9 @@ import models.Game;
 public class GamesRepository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new H2Connection();
-	
+
 	public Game search(Game gameForm) {
-		Game gameDB= null;
+		Game gameDB = null;
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
@@ -25,7 +25,7 @@ public class GamesRepository {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Game WHERE title = ?");
 			prepareStatement.setString(1, gameForm.getTitle());
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				gameDB = new Game();
 				gameDB.setTitle(resultSet.getString(1));
 				gameDB.setAge(resultSet.getString(2));
@@ -34,22 +34,23 @@ public class GamesRepository {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			manager.close(resultSet);
 			manager.close(prepareStatement);
 			manager.close(conn);
 		}
 		return gameDB;
 	}
-	
+
 	public void insertGame(Game gameForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement("INSERT INTO Game (title, age, releaseDate)" + "VALUES (?, ?, ?)");
+			preparedStatement = conn
+					.prepareStatement("INSERT INTO Game (title, age, releaseDate)" + "VALUES (?, ?, ?)");
 			preparedStatement.setString(1, gameForm.getTitle());
 			preparedStatement.setString(2, gameForm.getAge());
-			preparedStatement.setDate(3,(Date) gameForm.getReleaseDate());
+			preparedStatement.setDate(3, (Date) gameForm.getReleaseDate());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,85 +60,88 @@ public class GamesRepository {
 			manager.close(conn);
 		}
 	}
-	
+
 	public List<Game> searchAll() {
-		List<Game> listOfGames= new ArrayList<Game>();
+		List<Game> listOfGames = new ArrayList<Game>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM VIDEOGAME");
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				Game gameDB = new Game();
 				gameDB.setTitle(resultSet.getString(1));
 				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));;
+				gameDB.setReleaseDate(resultSet.getDate(3));
+				;
 				listOfGames.add(gameDB);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			manager.close(resultSet);
 			manager.close(prepareStatement);
 			manager.close(conn);
 		}
 		return listOfGames;
 	}
-	
+
 	public List<Game> orderByTitle() {
-		List<Game> listOfGames= new ArrayList<Game>();
+		List<Game> listOfGames = new ArrayList<Game>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Game ORDER BY name ASC");
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				Game gameDB = new Game();
 				gameDB.setTitle(resultSet.getString(1));
 				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));;
+				gameDB.setReleaseDate(resultSet.getDate(3));
+				;
 				listOfGames.add(gameDB);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			manager.close(resultSet);
 			manager.close(prepareStatement);
 			manager.close(conn);
 		}
 		return listOfGames;
 	}
-	
+
 	public List<Game> orderByReleaseDate() {
-		List<Game> listOfGames= new ArrayList<Game>();
+		List<Game> listOfGames = new ArrayList<Game>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Game ORDER BY releaseDate ASC");
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				Game gameDB = new Game();
 				gameDB.setTitle(resultSet.getString(1));
 				gameDB.setAge(resultSet.getString(2));
-				gameDB.setReleaseDate(resultSet.getDate(3));;
+				gameDB.setReleaseDate(resultSet.getDate(3));
+				;
 				listOfGames.add(gameDB);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			manager.close(resultSet);
 			manager.close(prepareStatement);
 			manager.close(conn);
 		}
 		return listOfGames;
 	}
-	
+
 	public void delete(Game gameForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
@@ -154,14 +158,14 @@ public class GamesRepository {
 			manager.close(conn);
 		}
 	}
-	
+
 	public void update(Game consoleForm) {
 		Connection conn = manager.open(jdbcUrl);
 		manager.close(conn);
 	}
-	
+
 	public List<Game> selectByCompany(int id) {
-		List<Game> listVideoGame= new ArrayList<Game>();
+		List<Game> listVideoGame = new ArrayList<Game>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
@@ -169,7 +173,7 @@ public class GamesRepository {
 			prepareStatement = conn.prepareStatement("SELECT * FROM VIDEOGAME WHERE companyID = ?");
 			prepareStatement.setString(1, id + "");
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				Game gameDB = new Game();
 				gameDB.setTitle(resultSet.getString(1));
 				gameDB.setAge(resultSet.getString(2));
@@ -180,7 +184,7 @@ public class GamesRepository {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			manager.close(resultSet);
 			manager.close(prepareStatement);
 			manager.close(conn);

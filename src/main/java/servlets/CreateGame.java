@@ -11,19 +11,19 @@ import models.Game;
 import services.ConsoleService;
 import services.GameService;
 
-public class CreateGame extends HttpServlet{
+public class CreateGame extends HttpServlet {
 	private GameService service = new GameService();
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Game game = service.assembleUserFromRequest(req);
 		service.createNewVideoGameFromRequest(game);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateVideogame.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 
 	public GameService getService() {
