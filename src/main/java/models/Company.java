@@ -5,16 +5,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Company {
-	private int iD;
+	private int Id;
 	private String name;
 	private Date creationDate;
 	
 	public int getId() {
-		return iD;
+		return Id;
 	}
 
-	public void setId(int iD) {
-		this.iD = iD;
+	public void setId(int Id) {
+		this.Id = Id;
 	}
 	
 	public String getName() {
