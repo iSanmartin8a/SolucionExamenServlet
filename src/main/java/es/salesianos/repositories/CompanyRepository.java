@@ -42,4 +42,10 @@ public class CompanyRepository {
 		List<Company> companies = template.query(sql, new BeanPropertyRowMapper(Company.class));
 		return companies;
 	}
+	
+	public void deleteCompany(String name) {
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("name", name);
+		namedJdbcTemplate.update("DELETE FROM Companies WHERE name = :name", params);
+	}
 }

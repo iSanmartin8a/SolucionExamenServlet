@@ -30,4 +30,13 @@ public class CompanyService {
 	public void setRepository(CompanyRepository repository) {
 		this.repository = repository;
 	}
+	
+	public void insert(Company company) {
+ 		repository.insertCompany(company);
+ 	}
+
+	public void delete(String name) {
+ 		repository.deleteCompany(name);
+ 	}
+
 }
