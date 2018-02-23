@@ -34,5 +34,4 @@ public class ConsoleController {
 		modelAndView.addObject("listAllConsole", service.listAllByCompany(companyId));
 		return modelAndView;
 	}
-
 }

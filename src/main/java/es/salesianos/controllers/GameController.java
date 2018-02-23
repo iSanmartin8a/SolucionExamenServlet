@@ -12,31 +12,32 @@ public class GameController {
 	@Autowired
 	private GameService service;
 
-	@PostMapping("registervideogame")
+	@PostMapping("createGame")
 	public ModelAndView videogameInsert(@ModelAttribute Game game) {
 		service.createNewVideoGameFromRequest(game);
-		ModelAndView modelAndView = new ModelAndView("RegisterVideogame", "command", new Game());
+		ModelAndView modelAndView = new ModelAndView("createGame", "command", new Game());
 		return modelAndView;
 	}
 
-	@GetMapping("/ListVideogames")
+	@GetMapping("/ListGame")
 	public ModelAndView listVideogames() {
-		ModelAndView modelAndView = new ModelAndView("ListVideogames", "command", new Game());
-		modelAndView.addObject("listAllVideogames", service.listAllVideogames());
+		ModelAndView modelAndView = new ModelAndView("listGame", "command", new Game());
+		modelAndView.addObject("listAllVideoGames", service.listAllVideogames());
 		return modelAndView;
 	}
 
-	@GetMapping("/ListRecommendedAge")
-	public ModelAndView recommendedAge() {
-		ModelAndView modelAndView = new ModelAndView("ListRecommendedAge");
-		modelAndView.addObject("recommendedAge");
+	@PostMapping("/ListGame")
+	public ModelAndView recommendedAge(@ModelAttribute("consoleName") String title,
+			@ModelAttribute("order") String order) {
+		ModelAndView modelAndView = new ModelAndView("orderByTitle", "command", new Game());
+		modelAndView.addObject("listAllVideoGames", service.OrderByTitle());
 		return modelAndView;
 	}
 
-	@PostMapping("orderVideogames")
+	@PostMapping("ListGame")
 	public ModelAndView order(@ModelAttribute("consoleName") String recommendedAge,
 			@ModelAttribute("order") String order) {
-		ModelAndView modelAndView = new ModelAndView("ListRecommendedAge", "command", new Game());
+		ModelAndView modelAndView = new ModelAndView("orderByReleaseDate", "command", new Game());
 		modelAndView.addObject("listAllVideogames", service.OrderByReleaseDate());
 		return modelAndView;
 	}
