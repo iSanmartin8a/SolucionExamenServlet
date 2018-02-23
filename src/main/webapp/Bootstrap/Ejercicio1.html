@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <!-- Required meta tags always come first -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	        crossorigin="anonymous">
+	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	        crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	        crossorigin="anonymous"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	        crossorigin="anonymous"></script>
+	    <style>
+	        .header {
+	            color: black;
+	            background-color: #82e064;
+	            height: 100px;
+	            font-size: 20px;
+	            text-align: center;
+	            border-style: solid;
+	            border-color: white;
+	        }
+	        .numbers {
+	            color: black;
+	            background-color: #ff89a9;
+	            height: 100px;
+	            font-size: 20px;
+	            text-align: center;
+	            border-style: solid;
+	            border-color: white;
+	        }
+	        .middle {
+	            color: black;
+	            background-color: #0dfe89;
+	            height: 100px;
+	            font-size: 20px;
+	            text-align: center;
+	            border-style: solid;
+	            border-color: white;
+	        }
+	        .letters {
+	            color: black;
+	            background-color: #ffff89;
+	            height: 100px;
+	            font-size: 20px;
+	            text-align: center;
+	            border-style: solid;
+	            border-color: white;
+	        }
+	        .footer {
+	            color: black;
+	            background-color: #9cffce;
+	            height: 100px;
+	            font-size: 20px;
+	            text-align: center;
+	            border-style: solid;
+	            border-color: white;
+	        }
+	    </style>
+	</head>
+	<body>
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 header">
+	                HEADER
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 order-xl-1 order-lg-1 order-md-4 order-sm-1 order-1 offset-xl-0 offset-lg-0  numbers">
+	                1
+	            </div>
+	            <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 order-xl-3 order-lg-3 order-md-3 order-sm-2 order-2 offset-xl-3 offset-lg-3 numbers">
+	                2
+	            </div>
+	            <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 d-none d-sm-none d-md-block d-lg-block order-xl-4 order-lg-4 order-md-2 offset-xl-0 offset-lg-0 numbers">
+	                3
+	            </div>
+	            <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 d-none d-sm-none d-md-block d-lg-block order-xl-2 order-lg-2 order-md-1 offset-xl-6 offset-lg-6 numbers">
+	                4
+	            </div>
+	        </div>
+	        <div class="row">
+	                <div class="col-sm-12 col-md-12 col-lg-12 d-none d-sm-none d-md-block d-lg-none footer">
+	                    FOOTER
+	                </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 middle">
+	                MIDDLE
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 order-sm-1 order-md-2 order-lg-1 order-xl-1 offset-0 offset-sm-0 offset-md-0 letters">
+	                A
+	            </div>
+	            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 order-sm-3 order-md-4 order-lg-2 order-xl-2 offset-3 offset-sm-3 offset-md-0 letters">
+	                B
+	            </div>
+	            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 order-sm-4 order-md-3 order-lg-3 order-xl-3 offset-0 offset-sm-0 offset-md-0 letters">
+	                C
+	            </div>
+	            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 order-sm-2 order-md-1 order-lg-4 order-xl-4 offset-0 offset-sm-6 offset-md-0 letters">
+	                D
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-sm-12 col-md-12 col-lg-12 d-none d-sm-none d-md-none d-lg-block footer">
+	                FOOTER
+	            </div>
+	        </div>
+	    </div>
+	</body>
+</html>
